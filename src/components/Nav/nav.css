@@ -1,0 +1,31 @@
+/* Nav.css */
+
+.home-ul {
+  list-style: none;        /* remove default bullets */
+  display: flex;           /* align items horizontally */
+  justify-content: center; /* center the nav items */
+  align-items: center;
+  background-color: #2c3e50; /* dark navbar background */
+  margin: 0;
+  padding: 10px 0;
+}
+
+.home-li {
+  margin: 0 20px; /* spacing between nav items */
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.home-li h1 {
+  font-size: 18px;
+  font-weight: 500;
+  color: white; /* text color */
+}
+
+.home-li:hover {
+  transform: scale(1.1); /* slight zoom on hover */
+}
+
+.home-li h1:hover {
+  color: #1abc9c; /* change text color on hover */
+}
