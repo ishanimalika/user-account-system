@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import Home from "./components/home/Home"
 import { Route,Routes } from 'react-router-dom';
-import User from "./components/AddUser/User"
 import Users from "./components/UserDetails/Users"
+import AddUser from './components/AddUser/AddUser';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/mainhome" element={<Home />}/>
-            <Route path="/adduser" element={<User />}/>
+            <Route path="/adduser" element={<AddUser />}/>
             <Route path="/userdetails" element={<Users />}/>
           </Routes>
         </React.Fragment>
