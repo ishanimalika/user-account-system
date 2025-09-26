@@ -35,8 +35,8 @@ function Users() {
       ))
       setUsers(filteredUsers);
       setNoResults(filteredUsers.length === 0);
-    })
-  }
+    });
+  };
 
   return (
     <div>
