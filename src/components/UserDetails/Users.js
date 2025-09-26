@@ -3,14 +3,15 @@ import Nav from '../Nav/Nav';
 import User from '../User/User';  
 import axios from "axios"
 import {useReactToPrint} from "react-to-print";
+import "./Users.css"; // external css
 
 const URL = "http://localhost:5000/users";
 
 const fetchHandler = async() =>{
   return await axios.get(URL).then((res) => res.data);
 };
-function Users() {
 
+function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(()=> {
@@ -30,47 +31,50 @@ function Users() {
   const handleSearch = () => {
     fetchHandler().then((data) =>{
       const filteredUsers = data.user.filter((user) =>
-      Object.values(user).some((field)=>
-      field.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      ))
+        Object.values(user).some((field)=>
+          field.toString().toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      )
       setUsers(filteredUsers);
       setNoResults(filteredUsers.length === 0);
     });
   };
 
   return (
-    <div>
+    <div className="users-page">
       <Nav/>
-      <h1>User Details Display Page</h1>
-      <input onChange={(e) => setSearchQuery(e.target.value)}
-         type="text"
-         name="search"
-         placeholder="Search User Details"
-      ></input>
+      <h1 className="page-title">User Details Display Page</h1>
 
-      <button onClick={handleSearch}>Search</button>
+      <div className="search-container">
+        <input 
+          onChange={(e) => setSearchQuery(e.target.value)}
+          type="text"
+          name="search"
+          placeholder="Search User Details"
+          className="search-input"
+        />
+        <button onClick={handleSearch} className="btn-primary">Search</button>
+      </div>
 
       {noResults ? (
-
-        <div>
+        <div className="no-results">
           <p>No Users Found</p>
         </div>
-
-      ):(
-
-      <div ref={ComponentRef}>
-        {users && users.map((user, i) => (
-          <div key ={i}>
-            <User user={user}/>
-          </div>
-        ))}
-      </div>
+      ) : (
+        <div ref={ComponentRef} className="users-list">
+          {users && users.map((user, i) => (
+            <div key={i} className="user-card">
+              <User user={user}/>
+            </div>
+          ))}
+        </div>
       )}
 
-      <br/>
-      <button onClick={handlePrint}>Download Report</button>
+      <div className="download-btn">
+        <button onClick={handlePrint} className="btn-outline">Download Report</button>
+      </div>
     </div>
   )
 }
 
-export default Users
+export default Users;
